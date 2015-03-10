@@ -1,53 +1,83 @@
 #include<iostream>
 using namespace std;
 
-typedef struct Node{
-	Node* next_;
-	int value_;
-	Node(int x): value_(x), next_(NULL){}
-} Node;
+ struct ListNode {
+     int val;
+     ListNode *next;
+     ListNode(int x) : val(x), next(NULL) {}
+};
 
-void print(Node* head){
+void print(ListNode* head){
 
-	Node* next = head;
-	while(next->next_ != NULL){
+	ListNode* next = head;
+	while(next->next!= NULL){
 
-		cout << next->value_ << ", ";
-		next = next->next_;
+		cout << next->val << ", ";
+		next = next->next;
 	}
-	cout << next->value_ << endl;
+	cout << next->val << endl;
 }
-Node* gotoNode(Node* head, int node_idx){
+ListNode* gotoNode(ListNode* head, int node_idx){
 
 	int count = 0;
-	Node* nextNode = head;
+	ListNode* nextNode = head;
 	while(count++ != node_idx){
 
-		nextNode = nextNode->next_;
+		nextNode = nextNode->next;
 	}
 	return nextNode;
 }
-void swap(int lnode_idx, Node* lnode, int rnode_idx, Node* rnode){
+ListNode* swap(ListNode* head, int lnode_idx, ListNode* lnode, int rnode_idx, ListNode* rnode){
+
+	ListNode* l_pre = NULL;
+	if(lnode_idx == 0){
+
+		l_pre = NULL;
+	}else{
+
+		l_pre = gotoNode(head, lnode_idx-1);
+	}
+
+	ListNode* r_pre = gotoNode(head, rnode_idx - 1);
+
+	ListNode* rnode_next= rnode->next;
+	if(l_pre == NULL){
+
+		rnode->next = lnode->next;
+		head = rnode;
+	}else{
+
+		l_pre->next = rnode;
+		rnode->next = lnode->next;
+	}
 	
-	Node* tmp1
+	r_pre->next = lnode;
+	lnode->next = rnode_next;
+
+	return head;
 }
-Node* reverseKGroup(Node* head, int k){
+ListNode* reverseKGroup(ListNode* head, int k){
 	
-	//Node* tmp1, tmp2;
-	Node* next_node = head;
+	if(head == NULL)
+		return NULL;
+
+	ListNode* next_node = head;
 	int node_idx = 0;
 	int left_node_idx = 0;
 	int right_node_idx = 0;
 	int list_size = 0;
 	//get size
-	while(next_node->next_ != NULL){
+	while(next_node->next != NULL){
 
 		++list_size;
-		next_node = next_node->next_;
+		next_node = next_node->next;
 	}
 	list_size++;
+	if(list_size < k)
+		return head;
 
 	int range = 1;
+	ListNode* new_head =  head;
 	while(list_size - k > 0){
 
 		right_node_idx = (k * range) - 1;
@@ -55,27 +85,32 @@ Node* reverseKGroup(Node* head, int k){
 		list_size = list_size - k;
 		range++;
 		cout << "left is: " << left_node_idx << ", right is: " << right_node_idx << endl;
+
+		while(left_node_idx  < right_node_idx){
+
+			ListNode* left_node = gotoNode(new_head, left_node_idx);
+			ListNode* right_node = gotoNode(new_head, right_node_idx);
+			new_head = swap(new_head, left_node_idx, left_node, right_node_idx, right_node);
+			print(new_head);
+			left_node_idx++;
+			right_node_idx--;
+		}
 		
 	}
 
+//	print(new_head);
 }
 
 int main(){
 
-	Node head(0);
-	Node node1(1);head.next_ = &node1;
-	Node node2(2);node1.next_ = &node2;
-	Node node3(3);node2.next_ = &node3;
-	Node node4(4);node3.next_ = &node4;
-	Node node5(5);node4.next_ = &node5;
-	Node node6(6);node5.next_ = &node6;
+	ListNode head(0);
+	ListNode node1(1);head.next = &node1;
+	ListNode node2(2);node1.next = &node2;
+//	ListNode node3(3);node2.next = &node3;
+//	ListNode node4(4);node3.next = &node4;
+//	ListNode node5(5);node4.next = &node5;
+//	ListNode node6(6);node5.next = &node6;
 
-	Node* one_node = gotoNode(&head, 3);
-	cout << "one_node value is: " << one_node->value_ << endl;
-
-	reverseKGroup(&head, 3);
-	
-	print(&head);
-
+	reverseKGroup(&head, 2);
 
 }
