@@ -1,3 +1,8 @@
+/*
+1.mycode use additational space, and my code is too long
+2.example code, when any of the two list point NULL, put the non-NULL list two the merged list directly
+*/
+
 #include<iostream>
 
 using namespace std;
