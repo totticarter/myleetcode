@@ -36,22 +36,23 @@ ListNode *sortList(ListNode* head){
 	if(fast == NULL || slow == NULL)
 		return fast;
 
-	while(slow->next != NULL && slow->next->next != NULL){
+	while(fast->next != NULL && fast->next->next != NULL){
 
-		fast = fast->next;
-		slow = slow->next->next;
+		slow = slow->next;
+		fast = fast->next->next;
 	}
 
-	if(fast->next != NULL){
+	//	if(fast->next != NULL){
 
-		slow = fast;
-		fast = head;
-	}
+	fast = slow;
+	slow = slow->next;
+	fast->next = NULL;
+	//	}
 
 	if(fast == slow)
 		return fast;
 
-	return merge(sortList(fast), sortList(slow));
+	return merge(sortList(head), sortList(slow));
 }
 
 void print(ListNode* head){
@@ -81,3 +82,4 @@ int main(){
 
 
 }
+
