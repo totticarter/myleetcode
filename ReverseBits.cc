@@ -2,17 +2,27 @@
 
 
 #include<iostream>
-
+#include<stdint.h>
 
 using namespace std;
 
 uint32_t reverseBits(uint32_t n) {
 
 
+	uint32_t ans = 0;
+	for(int idx = 0; idx < 32; idx++){
+
+		ans = ans << 1;
+		ans = ans | (n & 1);
+		n = n >> 1;
+	}
+	return ans;
 
 }
 
 int main(){
 
-
+	uint32_t a = 43261596;
+	uint32_t b = reverseBits(a);
+	cout << b << endl;
 }
