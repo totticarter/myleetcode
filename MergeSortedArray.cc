@@ -53,5 +53,11 @@ void merge(int A[], int m, int B[], int n){
 int main(){
 
 
-
+	int A[10] = {1, 3, 5, 6};
+	int B[6] = {3, 4, 5, 6, 8};
+	merge(A, 4, B, 6);
+	for(int i = 0; i < 10; i++){
+		
+		cout << A[i] << ", ";
+	}
 }
