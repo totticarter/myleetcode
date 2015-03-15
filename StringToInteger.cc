@@ -1,3 +1,6 @@
+1.skip special char
+2.sign
+3.max and min of an integer
 #include<iostream>
 
 using namespace std;
