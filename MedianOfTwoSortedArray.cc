@@ -4,34 +4,38 @@ using namespace std;
 
 double findMedianSortedArrays(int A[], int m, int B[], int n){
 
-	int i = 0;
-	int j = 0;
-	int count = 0;
-	int median = (m+n)/2;
-	while(i < m || j < n){
+	if(m == 0)
+		return B[n/2];
+	else if(n == 0)
+		return A[m/2];
+	else if(m == 0 && n == 0)
+		return 0.00;
+	else{
+		int i = 0;
+		int j = 0;
+		int count = 0;
+		int median = (m+n)/2;
+		while(i < m || j < n){
 
-		if(A[i] < B[j]){
+			if(A[i] < B[j]){
 
-			A++;
-			count++;
-			i++;
-			if(count == median){
+				A++;
+				count++;
+				i++;
+				if(count == median){
 
-				return (double)(*A);
-			}
-		}else{
-			B++;
-			count++;
-			j++;
-			if(count == median){
+					return (double)(*A);
+				}
+			}else{
+				B++;
+				count++;
+				j++;
+				if(count == median){
 
-				return (double)(*B);
+					return (double)(*B);
+				}
 			}
 		}
-	}
-	if(i == m){
-		
-
 	}
 }
 

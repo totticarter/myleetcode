@@ -1,3 +1,4 @@
+//copy from example
 #include<iostream>
 using namespace std;
 
