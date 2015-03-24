@@ -1,6 +1,8 @@
 #include<iostream>
 #include<vector>
 #include<string.h>
+#include<unordered_map>
+#include<algorithm>
 using namespace std;
 
 struct ListNode {
