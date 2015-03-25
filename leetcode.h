@@ -3,6 +3,7 @@
 #include<string.h>
 #include<algorithm>
 #include<stdlib.h>
+#include<unordered_map>
 using namespace std;
 #define MIN(a, b) (a)>(b) ? (b):(a)
 #define MAX(a, b) (a)<(b) ? (b):(a)

@@ -1,3 +1,5 @@
+//copy from example, my code does not use the bool flag to just whether
+//the element has been used, so the execution time exceeds
 #include"leetcode.h"
 #include <unordered_map>
 
@@ -15,7 +17,6 @@ int longestConsecutive(vector<int>& num){
 	int max_len = 0;
 	for(int i = 0; i < num.size(); i++){
 
-		cout << "1111111111111" << endl;
 		int number = num[i];
 		if(umap[number] == true)
 			continue;
@@ -24,15 +25,17 @@ int longestConsecutive(vector<int>& num){
 		int this_len = 1;
 		int s = number-1;
 		int b = number+1;
-		while(umap.find(s--) != umap.end()){
+		while(umap.find(s) != umap.end()){
 
-			//umap[s] = true;
+			umap[s] = true;
 			this_len++;
+			s--;
 		}
-		while(umap.find(b++) != umap.end()){
+		while(umap.find(b) != umap.end()){
 
-			//umap[b] = true;	
+			umap[b] = true;
 			this_len++;
+			b++;
 		}
 
 		if(this_len > max_len){
