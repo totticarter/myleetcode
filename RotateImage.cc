@@ -1,3 +1,4 @@
+//copy from examples, first..., second...
 #include"leetcode.h"
 
 //void rotate(int** A, int n){
@@ -7,9 +8,9 @@ void rotate(int A[][4], int n){
 
 		for(int j = 0; j < n; j++){
 			
-			//cout << A[i][j] << ", " << A[n-1-j][n-1-i] << endl;
+			cout << A[i][j] << ", " << A[n-1-j][n-1-i] << endl;
 			swap(A[i][j], A[n-1-j][n-1-i]);
-			//cout << A[i][j] << ", " << A[n-1-j][n-1-i] << endl;
+			cout << A[i][j] << ", " << A[n-1-j][n-1-i] << endl;
 		}
 	}
 	cout << "after rotate: " << endl;
