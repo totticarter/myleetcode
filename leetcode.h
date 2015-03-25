@@ -1,7 +1,11 @@
 #include<iostream>
 #include<vector>
 #include<string.h>
+#include<algorithm>
+#include<stdlib.h>
 using namespace std;
+#define MIN(a, b) (a)>(b) ? (b):(a)
+#define MAX(a, b) (a)<(b) ? (b):(a)
 
 struct ListNode {
      int val;
