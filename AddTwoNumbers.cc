@@ -1,11 +1,7 @@
 #include<iostream>
+#include"leetcode.h"
 using namespace std;
 
-struct ListNode {
-	int val;
-	ListNode *next;
-	ListNode(int x) : val(x), next(NULL) {}
-};
 
 ListNode* addTwoNumbers(ListNode* l1, ListNode* l2){
 
@@ -23,7 +19,7 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2){
 	non_null_list->val = non_null_list->val + jinwei;
 	newNode->next = non_null_list;
 
-	return dummy->next;
+	return dummy.next;
 }
 
 int main(){
@@ -36,6 +32,10 @@ int main(){
 	ListNode list2(3);
 	ListNode node21(4);list2.next = &node21;
 	ListNode node22(1);node21.next = &node22;
+
+
+	ListNode* re = addTwoNumbers(&list1, &list2);
+	print(re);
 
 
 }

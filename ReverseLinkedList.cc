@@ -5,36 +5,36 @@
 
 ListNode* reverseBetween(ListNode* head, int m, int n){
 
-	int count = 0;
-	ListNode* pre_mnode = head;
-	while(count++ < m){
+	//int count = 0;
+	//ListNode* pre_mnode = head;
+	//while(count++ < m){
 
-		pre_mnode = pre_mnode->next;
+	//	pre_mnode = pre_mnode->next;
+	//}
+
+	//ListNode* mnode = pre_mnode->next;
+	//ListNode* cur = mnode->next;
+
+	//for(int i = m; i < n; i++){
+
+
+	//}
+
+	ListNode dummy(-1);
+	dummy.next = head;
+	ListNode *prev = &dummy;
+	for (int i = 0; i < m - 1; ++i)
+		prev = prev->next;
+	ListNode* const head2 = prev;
+	prev = head2->next;
+	ListNode *cur = prev->next;
+	for (int i = m; i < n; ++i) {
+		prev->next = cur->next;
+		cur->next = head2->next;
+		head2->next = cur; // 头插法
+		cur = prev->next;
 	}
-
-	ListNode* mnode = pre_mnode->next;
-	ListNode* cur = mnode->next;
-
-	for(int i = m; i < n; i++){
-
-
-	}
-
-//	ListNode dummy(-1);
-//	dummy.next = head;
-//	ListNode *prev = &dummy;
-//	for (int i = 0; i < m - 1; ++i)
-//		prev = prev->next;
-//	ListNode* const head2 = prev;
-//	prev = head2->next;
-//	ListNode *cur = prev->next;
-//	for (int i = m; i < n; ++i) {
-//		prev->next = cur->next;
-//		cur->next = head2->next;
-//		head2->next = cur; // 头插法
-//		cur = prev->next;
-//	}
-//	return dummy.next;
+	return dummy.next;
 }
 
 int main(){
