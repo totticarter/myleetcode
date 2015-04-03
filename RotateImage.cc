@@ -2,7 +2,7 @@
 #include"leetcode.h"
 
 //void rotate(int** A, int n){
-void rotate(int A[][4], int n){
+void rotate(int (*A)[4], int n){
 
 	for(int i = 0; i < n; i++){
 
