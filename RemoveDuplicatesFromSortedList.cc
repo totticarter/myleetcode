@@ -1,28 +1,89 @@
 #include"leetcode.h"
 
+//space cost O(n), time cost O(n);
+//ListNode* deleteDuplicates(ListNode* head){
+//
+//	if(head == NULL)
+//		return NULL;
+//	ListNode* oneNode = head;
+//	ListNode dummy(-1);
+//	ListNode *newList = &dummy;
+//	int lastValue = head->val;
+//	while(oneNode != NULL){
+//
+//		if(oneNode->val == lastValue && oneNode != head){
+//
+//			oneNode = oneNode->next;
+//		}else{
+//
+//			ListNode *newNode = new ListNode(oneNode->val);
+//			newList->next = newNode;
+//			newList = newList->next;
+//			lastValue = oneNode->val;
+//			oneNode = oneNode->next;
+//		}
+//
+//	}
+//	return dummy.next;
+//
+//}
+
+
 ListNode* deleteDuplicates(ListNode* head){
 
-	ListNode* oneNode = head;
-	ListNode dummy(-1);
-	ListNode *newList = &dummy;
-	int lastValue = head->val;
-	while(oneNode != NULL){
+	if(head == NULL)
+		return NULL;
 
-		if(oneNode->val == lastValue && oneNode != head){
+	//this is my code, my code use too many var and most of them are unuseful
+	//ListNode dummy(-1);
+	//dummy.next = head;
+	//ListNode* oneNode = head;
+	//ListNode* oneNodePre = &dummy;
 
-			oneNode = oneNode->next;
+	//ListNode* insertPosPre = head;
+	//ListNode* insertPos = head->next;
+	//int lastValue = head->val;
+	//while(oneNode != NULL){
+
+	//	if(oneNode->val == lastValue || oneNode->next == NULL){
+
+	//		oneNodePre = oneNode;
+	//		oneNode = oneNode->next;
+
+	//	}else{
+	//		
+	//		ListNode* tmpOneNode = oneNode->next;
+	//		ListNode* tmpOneNodePre = oneNodePre;
+
+	//		oneNodePre->next = oneNode->next;
+	//		insertPosPre->next = oneNode;
+	//		oneNode->next = insertPos;
+
+	//		oneNode = tmpOneNode;
+	//		oneNodePre = tmpOneNodePre;
+	//		lastValue = oneNode->val;
+	//		print(head);
+	//	}
+	//}
+
+	//return dummy.next;
+
+	ListNode* prev = head;
+	ListNode* cur = head->next;
+	while(cur != NULL){
+
+		if(prev->val == cur->val){
+
+			prev->next = cur->next;
+//			delete cur;
 		}else{
-
-			ListNode *newNode = new ListNode(oneNode->val);
-			newList->next = newNode;	
-			newList = newList->next;
-			lastValue = oneNode->val;
-			oneNode = oneNode->next;
-		}
-
-	}
-	return dummy.next;
 	
+			prev = cur;
+		}
+		cur=cur->next;
+	}
+	
+	return head;
 }
 
 int main(){
